@@ -8,8 +8,11 @@ const client = require('twilio')(accountSid, authToken).pricing;
 client.voice
   .numbers('+15108675310')
   .fetch()
-  .then(number => {
-    console.log(number.outboundCallPrice.current_price);
+  .then(numbers => {
+    console.log(number.outboundCallPriceWithOrigin.current_price);
+    numbers.outboundCallPriceWithOrigin.forEach(price => {
+      console.log(price.current_price);
+    });
   })
   .catch(error => {
     console.log(error);
